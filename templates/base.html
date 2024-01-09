@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %}Django LMS{% endblock title %}</title>
+
+  
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+
+  
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+   
+    {% block header %}{% endblock %}
+</head>
+
+<body>
+    {% include 'aside.html' %}
+    <div id="main">
+        {% include 'navbar.html' %}
+
+        <div class="container-fluid" id="main-content">
+            {% block content %}{% endblock content %}
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.au-input').focus(function () {
+                $('#top-navbar').attr('class', 'dim');
+                $('#side-nav').css('pointer-events', 'none');
+                $('#main-content').css('pointer-events', 'none');
+            });
+            $('.au-input').focusout(function () {
+                $('#top-navbar').removeAttr('class');
+                $('#side-nav').css('pointer-events', 'auto');
+                $('#main-content').css('pointer-events', 'auto');
+            });
+        })
+    </script>
+<script type="text/javascript">!function(t,e){t.artibotApi={l:[],t:[],on:function(){this.l.push(arguments)},trigger:function(){this.t.push(arguments)}};var a=!1,i=e.createElement("script");i.async=!0,i.type="text/javascript",i.src="https://app.artibot.ai/loader.js",e.getElementsByTagName("head").item(0).appendChild(i),i.onreadystatechange=i.onload=function(){if(!(a||this.readyState&&"loaded"!=this.readyState&&"complete"!=this.readyState)){new window.ArtiBot({i:"a9dfe1ea-a68c-4d77-973e-5e645854b12c"});a=!0}}}(window,document);</script>
+    {% block js %}
+    {% endblock js %}
+</body>
+
+</html>
